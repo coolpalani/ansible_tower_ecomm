@@ -28,12 +28,10 @@
   with_items:
     - resourcelimits.yaml
     - complete-demo.yaml
-  when: "{{ esti }}"
-
+  
 - name: create oc project
   command: oc new-project {{ projectname }}
-  when: "{{ esti }}"
-
+  
 - name: switch to project
   command: oc project {{ projectname }}
 
@@ -56,24 +54,20 @@
 
 - name: login to openshift as user {{ username }}
   command: oc login -u={{ username }} -p={{ pass }} --insecure-skip-tls-verify {{ ochost }}:{{ ocport }}
-  when: "{{ esti }}"
-
+  
 - name: switch to project
   command: oc project {{ projectname }}
-  when: "{{ esti }}"
-
+  
 - name: create application
   command: oc new-app {{ template }} -p APPLICATION_DOMAIN={{ apphostname }}.{{ appdomain }}
   when: "{{ quickapp }}" 
 
 - name: create application via sti
   command: oc apply -n {{ projectname }} -f /tmp/complete-demo.yaml --context-dir={{ contextdir }} 
-  when: "{{ esti }}"
-
+  
 - name: expose service
   command: oc expose service {{ apphostname }}
-  when: "{{ esti }}"
-
+  
 - name: setup autoscaling
   command: oc create -f /tmp/scalar.yaml -n {{ projectname }}
   when: "{{ autoscale }}"
