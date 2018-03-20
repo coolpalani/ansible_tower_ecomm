@@ -17,9 +17,8 @@
 
 - name: create oc project
   command: oc new-project {{ projectname }}
-  when: "{{ quickapp }}"
-
-- name: copy templates scaler.yaml and resourcelimits for pod autoscaling
+  
+- name: copy templates complete-demo.yaml and resourcelimits for pod autoscaling
   template: 
     src: templates/{{ item }}.j2
     dest: /tmp/{{ item }}
