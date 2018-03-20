@@ -60,7 +60,7 @@
   when: "{{ quickapp }}" 
 
 - name: create application via sti
-  command: oc apply -n {{ projectname }} -f /tmp/complete-demo.yaml --context-dir={{ contextdir }} 
+  command: oc apply -n {{ projectname }} -f /tmp/complete-demo.yaml 
   
 - name: expose service
   command: oc expose service {{ apphostname }}
