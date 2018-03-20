@@ -42,6 +42,15 @@
   command: oc login -u system:admin
   when: "{{ autoscale }}"
 
+- name: pods need full access
+  command: oc adm policy add-cluster-role-to-user cluster-admin -z {{ projectname }}
+
+- name: pods also need to run as priviliaged containers, so grant 'priviliged' Security Context Constrains (SCC)
+  command: oc adm policy add-scc-to-user privileged -z {{ projectname }}
+
+- name: run as UID 0
+  command: oc adm policy add-scc-to-user anyuid -z default
+
 - name: create resource limits for the project
   command: oc create -f /tmp/resourcelimits.yaml -n {{ projectname }}
   when: "{{ autoscale }}"
