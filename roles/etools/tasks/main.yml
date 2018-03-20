@@ -63,7 +63,7 @@
   command: oc apply -n {{ projectname }} -f /tmp/complete-demo.yaml 
   
 - name: expose service
-  command: oc expose service {{ apphostname }}
+  command: oc expose service/front-end --hostname={{ apphostname }}.{{ appdomain }}
   
 - name: setup autoscaling
   command: oc create -f /tmp/scalar.yaml -n {{ projectname }}
