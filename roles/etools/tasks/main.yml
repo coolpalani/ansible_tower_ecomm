@@ -28,10 +28,7 @@
   with_items:
     - resourcelimits.yaml
     - complete-demo.yaml
-  
-- name: create oc project
-  command: oc new-project {{ projectname }}
-  
+ 
 - name: switch to project
   command: oc project {{ projectname }}
 
