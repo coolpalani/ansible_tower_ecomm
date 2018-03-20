@@ -1,0 +1,17 @@
+---
+# defaults file for octools
+projectname: ecommerce
+template: example
+apphostname: eshop
+createtemplate: false
+quickapp: false
+esti: false
+git_url: https://github.com/coolpalani/ansible_tower_ecomm.git 
+template: nodejs-example
+projectname: ecommerce
+scaleme: false
+autoscale: false
+username: youruser
+pass: yourpass
+contextdir: .
+number_of_instances: 1
